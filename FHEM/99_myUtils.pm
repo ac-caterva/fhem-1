@@ -807,8 +807,8 @@ my $string = "#P_in_W_chargeStandbyThreshold:				Charging only, when \"P_in_W_ch
 #SoC_max ... SoC_charge ... SoC_discharge ... SoC_min ... SoC_err
 #
 #P_in_W_chargeStandbyThreshold;#P_in_W_chargeStandbyThreshold_hyst;#P_in_W_dischargeStandbyThreshold;#P_in_W_dischargeStandbyThreshold_delay;#P_in_W_dischargeStandbyThreshold_hyst;#SoC_max;#SoC_charge;#SoC_discharge;#SoC_min;#SoC_err;#counter_discharge_to_standby_max;#counter_charge_to_standby_max;#counter_standby_to_discharge_max;#counter_increment;#system_initialization;#ECS3_Configuration
-#October-March: -1500;-1000;2500;1500;1000;90;80;23;18;0;120;60;4;0;1112;PVHH;0;
-#April-September: -4000;-1500;1500;750;500;90;80;23;18;0;120;60;4;0;1112;PVHH;0;
+#October-March:   -1500;-1000;2500;1500;1000;90;80;23;18;0;120;60;4;1112;PVHH;
+#April-September: -4000;-1500;1500;750;500;90;80;23;18;0;120;60;4;1112;PVHH;
 #Config created by FHEM";
 
 #update_Fehlerspeicher();
@@ -874,14 +874,6 @@ create_noPVBuffering_Flag()
 {
 system("ssh admin\@caterva touch /home/admin/registry/noPVBuffering");
 }
-
-sub
-check_noPVBuffering_Flag()
-{
-my $response = `echo -f /home/admin/registry/noPVBuffering`;
-if ($response) {Log 1,"File noPVBuffering existiert"} else {Log 1,"File noPVBuffering existiert nicht"}; 
-}
-
 
 #rsh admin@caterva "/home/admin/bin/BusinessOptimumKill.sh" 
 sub 
